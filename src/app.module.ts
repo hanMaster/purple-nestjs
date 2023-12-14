@@ -5,8 +5,8 @@ import { ScheduleModule } from './schedule/schedule.module';
 import { RoomsModule } from './rooms/rooms.module';
 
 @Module({
-	imports: [ScheduleModule, RoomsModule],
-	controllers: [AppController],
-	providers: [AppService],
+    imports: [ScheduleModule, RoomsModule],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}
