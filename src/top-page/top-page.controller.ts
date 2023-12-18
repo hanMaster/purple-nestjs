@@ -1,9 +1,12 @@
 import { TopPageModel } from './top-page.model';
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
 import { FindTopPageDto } from './dto/find-top-page.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('top-page')
 export class TopPageController {
+	constructor(private readonly configService: ConfigService) {}
+
 	@Post('create')
 	async create(@Body() body: Omit<TopPageModel, '_id'>) {
 		console.log(body);
