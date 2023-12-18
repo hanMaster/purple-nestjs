@@ -12,12 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 	imports: [
 		AuthModule,
 		ConfigModule.forRoot({ isGlobal: true }),
-		// MongooseModule.forRootAsync({
-		// 	imports: [ConfigModule],
-		// 	inject: [ConfigService],
-		// 	useFactory: getMongoConfig,
-		// }),
-		MongooseModule.forRoot('mongodb://localhost:27017/topapi'),
+		MongooseModule.forRoot(process.env.DB_URI),
 		ProductModule,
 		ReviewModule,
 		TopPageModule,

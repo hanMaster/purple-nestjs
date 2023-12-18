@@ -8,6 +8,7 @@ export enum TopLevelCategory {
 	Products,
 }
 
+@Schema()
 export class HhData {
 	@Prop()
 	count: number;
@@ -22,6 +23,9 @@ export class HhData {
 	seniorSalary: number;
 }
 
+export const HhDataSchema = SchemaFactory.createForClass(HhData);
+
+@Schema()
 export class TopPageAdvantage {
 	@Prop()
 	title: string;
@@ -29,6 +33,8 @@ export class TopPageAdvantage {
 	@Prop()
 	description: string;
 }
+
+export const TopPageAdvantageSchema = SchemaFactory.createForClass(TopPageAdvantage);
 
 export type TopPageDocument = HydratedDocument<TopPageModel>;
 
@@ -51,10 +57,10 @@ export class TopPageModel {
 	@Prop()
 	category: string;
 
-	@Prop({ type: HhData })
+	@Prop({ type: HhDataSchema })
 	hh?: HhData;
 
-	@Prop({ type: [TopPageAdvantage] })
+	@Prop({ type: [TopPageAdvantageSchema] })
 	advantages: TopPageAdvantage[];
 
 	@Prop()

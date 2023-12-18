@@ -1,13 +1,32 @@
-version: '3.9'
+# version: '3.9'
+# services:
+#   mongo:
+#     image: mongo:latest
+#     container_name: mongo
+#     restart: always
+#     environment:
+#       - MONGODB_DATABASE="topapi"
+#     ports:
+#       - 27017:27017
+#     volumes:
+#       - ./mongo-data:/data/db
+#     command: --wiredTigerCacheSizeGB 1.5
+
+version: '3.3'
 services:
   mongo:
-    image: mongo:latest
+    image: mongo
     container_name: mongo
-    restart: always
-    environment:
-      - MONGODB_DATABASE="topapi"
     ports:
-      - 27017:27017
+      - '27017:27017'
+    restart: always
+    logging:
+      options:
+        max-size: 1g
+    environment:
+      - MONGODB_DATABASE="top-api"
+      # - MONGO_INITDB_DATABASE=topapi
+      # - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      # - MONGO_INITDB_ROOT_PASSWORD=1qaz2wsx
     volumes:
       - ./mongo-data:/data/db
-    command: --wiredTigerCacheSizeGB 1.5

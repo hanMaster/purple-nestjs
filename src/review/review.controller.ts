@@ -1,20 +1,23 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { ReviewModel } from './review.model';
+import { CreateReviewDto } from './dto/create-review.dto';
+import { ReviewService } from './review.service';
 
 @Controller('review')
 export class ReviewController {
+	constructor(private readonly reviewService: ReviewService) {}
+
 	@Post('create')
-	async create(@Body() body: Omit<ReviewModel, '_id'>) {
-		console.log(body);
+	async create(@Body() body: CreateReviewDto) {
+		return this.reviewService.create(body);
 	}
 
 	@Delete(':id')
 	async delete(@Param('id') id: string) {
-		console.log('Delete', id);
+		return this.reviewService.delete(id);
 	}
 
 	@Get('byProduct/:productId')
 	async getByProduct(@Param('productId') productId: string) {
-		console.log(productId);
+		return this.reviewService.findByProductId(productId);
 	}
 }

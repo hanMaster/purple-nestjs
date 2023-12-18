@@ -3,6 +3,7 @@ import { HydratedDocument } from 'mongoose';
 
 export type ProductModelDocument = HydratedDocument<ProductModel>;
 
+@Schema()
 class ProductCharacteristic {
 	@Prop()
 	namer: string;
@@ -10,6 +11,8 @@ class ProductCharacteristic {
 	@Prop()
 	value: string;
 }
+
+export const ProductCharacteristicSchema = SchemaFactory.createForClass(ProductCharacteristic);
 
 @Schema()
 export class ProductModel {
@@ -48,7 +51,7 @@ export class ProductModel {
 	@Prop({ type: [String] })
 	tags: string[];
 
-	@Prop({ type: [ProductCharacteristic], _id: false })
+	@Prop({ type: [ProductCharacteristicSchema], _id: false })
 	characteristics: ProductCharacteristic[];
 }
 
