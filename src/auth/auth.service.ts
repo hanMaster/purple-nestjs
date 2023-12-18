@@ -9,6 +9,9 @@ export class AuthService {
 	constructor(@InjectModel(AuthModel.name) private readonly authModel: Model<AuthModel>) {}
 
 	async create(dto: AuthDto): Promise<AuthModel> {
-		return this.authModel.create(dto);
+		return this.authModel.create({
+			email: dto.login,
+			passwordHash: dto.password,
+		});
 	}
 }

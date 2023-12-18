@@ -1,4 +1,4 @@
-import { Review } from './schemas/review.schema';
+import { Review } from './review.schema';
 import { DeleteResult } from 'mongodb';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
